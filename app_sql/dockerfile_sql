@@ -1,0 +1,9 @@
+# Use a imagem oficial do MySQL
+FROM mysql:latest
+
+# Configurar variáveis de ambiente
+ENV MYSQL_ROOT_PASSWORD=urubu100
+ENV MYSQL_DATABASE=safe_monitor
+
+# Copiar scripts de inicialização (opcional)
+COPY ./scripts/ /docker-entrypoint-initdb.d/

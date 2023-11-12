@@ -1,0 +1,15 @@
+# Use a imagem oficial do Microsoft SQL Server
+FROM mcr.microsoft.com/mssql/server
+
+# Configurar variáveis de ambiente
+ENV SA_PASSWORD=urubu100
+ENV ACCEPT_EULA=Y
+ENV MSSQL_PID=Express
+
+# Criar diretório de scripts e copiar script SQL de inicialização
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY ./scripts/initialize.sql .
+
+# Inicializar banco de dados
+CMD /bin/bash -c '/opt/mssql/bin/sqlservr & (sleep 10 && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P urubu100 -d master -i initialize.sql)'

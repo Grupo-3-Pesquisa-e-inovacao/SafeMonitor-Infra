@@ -1,0 +1,20 @@
+# Use a imagem oficial do Node.js
+FROM node:14
+
+# Criar diretório de aplicação
+WORKDIR /usr/src/app
+
+# Copiar dependências do projeto
+COPY package*.json ./
+
+# Instalar dependências
+RUN npm install
+
+# Copiar código fonte
+COPY ./site-institucional-data-viz/site/ .
+
+# Expor a porta 3000 (ou a porta que sua aplicação Node.js está usando)
+EXPOSE 3000
+
+# Comando para iniciar a aplicação
+CMD ["npm", "start"]
