@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  # Serviço Node.js
+  node-app:
+    build:
+      context: ./app_node
+      dockerfile: Dockerfile_node
+    ports:
+      - "80:80"
+
+  # Serviço SQL Server
+  sql-server:
+    build:
+      context: ./app_sqlserver
+      dockerfile: Dockerfile_sqlServer
+    ports:
+      - "1433:1433"
+
+  # Serviço MySQL
+  mysql-db:
+    build:
+      context: ./app_mysql
+      dockerfile: Dockerfile_mysql
+    ports:
+      - "3306:3306"

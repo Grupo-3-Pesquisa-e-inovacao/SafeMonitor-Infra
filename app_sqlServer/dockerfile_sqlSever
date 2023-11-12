@@ -1,4 +1,5 @@
 # Use a imagem oficial do Microsoft SQL Server
+# Use a imagem oficial do Microsoft SQL Server
 FROM mcr.microsoft.com/mssql/server
 
 # Configurar variáveis de ambiente
@@ -7,8 +8,7 @@ ENV ACCEPT_EULA=Y
 ENV MSSQL_PID=Express
 
 # Criar diretório de scripts e copiar script SQL de inicialização
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /var/opt/mssql
 COPY ./scripts/initialize.sql .
 
 # Inicializar banco de dados

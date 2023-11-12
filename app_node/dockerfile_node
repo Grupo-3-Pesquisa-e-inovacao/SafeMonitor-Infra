@@ -5,16 +5,16 @@ FROM node:14
 WORKDIR /usr/src/app
 
 # Copiar dependências do projeto
-COPY package*.json ./
+COPY ./SafeMonitor-Frontend ./package*.json ./
 
 # Instalar dependências
 RUN npm install
 
 # Copiar código fonte
-COPY ./site-institucional-data-viz/site/ .
+COPY ./SafeMonitor-Frontend ./
 
 # Expor a porta 3000 (ou a porta que sua aplicação Node.js está usando)
-EXPOSE 3000
+EXPOSE 80
 
 # Comando para iniciar a aplicação
 CMD ["npm", "start"]
