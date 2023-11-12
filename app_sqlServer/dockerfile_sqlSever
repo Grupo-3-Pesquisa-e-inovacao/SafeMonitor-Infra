@@ -9,7 +9,7 @@ ENV MSSQL_PID=Express
 
 # Criar diretório de scripts e copiar script SQL de inicialização
 WORKDIR /var/opt/mssql
-COPY ./scripts/initialize.sql .
+COPY ./initialize.sql .
 
 # Inicializar banco de dados
 CMD /bin/bash -c '/opt/mssql/bin/sqlservr & (sleep 10 && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P urubu100 -d master -i initialize.sql)'

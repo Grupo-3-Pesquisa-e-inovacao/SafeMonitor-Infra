@@ -26,25 +26,19 @@ sleep $wait_time
 # Download script instalação
 echo "Instalando arquivos..."
 
-#Dowload docker-compose
-wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/docker-compose.yml"
-
 # Dowload script BD 
 cd app_mysql
 wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_sql/initBD.sql"
-wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_sql/dockerfile_sql"
 cd..
 
 cd  app_sqlserver
 wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_sqlServer/initialize.sql"
-https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_sqlServer/dockerfile_sqlSever
 cd..
 
 
 cd app_node
 #Download web
 git clone "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Frontend"
-wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_node/dockerfile_node"
 cd ..
 
 

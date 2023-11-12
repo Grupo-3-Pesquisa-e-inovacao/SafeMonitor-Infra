@@ -4,8 +4,6 @@ FROM mysql:latest
 # Configurar variáveis de ambiente
 ENV MYSQL_ROOT_PASSWORD=urubu100
 ENV MYSQL_DATABASE=safe_monitor
-MYSQL_USER=aluno
-MYSQL_PASSWORD=sptech
 
 # Copiar scripts de inicialização (opcional)
 COPY ./scripts/ /docker-entrypoint-initdb.d/
