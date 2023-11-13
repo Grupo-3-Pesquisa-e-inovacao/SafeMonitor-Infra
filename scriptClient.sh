@@ -18,8 +18,6 @@ echo "Criando diretórios..."
 mkdir SafeMonitor
 cd SafeMonitor
 mkdir app_mysql
-mkdir app_sqlserver
-mkdir app_node
 mkdir app_java
 sleep $wait_time
 
@@ -28,20 +26,8 @@ echo "Instalando arquivos..."
 
 # Dowload script BD 
 cd app_mysql
-wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sql/dockerfile_sql"
-wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sql/initBD.sql"
-cd ..
-
-cd  app_sqlserver
-wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sqlServer/dockerfile_sqlSever"
-wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sqlServer/initialize.sql"
-cd ..
-
-
-cd app_node
-#Download web
-wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_node/dockerfile_node"
-git clone "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Frontend"
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_mysql/dockerfile_sql"
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_mysql/initBD.sql"
 cd ..
 
 cd app_java

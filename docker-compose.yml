@@ -1,22 +1,6 @@
 version: '3'
 services:
 
-  # Serviço Node.js
-  node-app:
-    build:
-      context: ./app_node
-      dockerfile: dockerfile_node
-    ports:
-      - "80:80"
-
-  # Serviço SQL Server
-  sql-server:
-    build:
-      context: ./app_sqlserver
-      dockerfile: dockerfile_sqlSever
-    ports:
-      - "1433:1433"
-
   # Serviço MySQL
   mysql-db:
     build:

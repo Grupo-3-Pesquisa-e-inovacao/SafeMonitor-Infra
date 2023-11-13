@@ -5,7 +5,7 @@ FROM openjdk:17
 WORKDIR /usr/src/app
 
 # Copie o arquivo JAR da aplicação para o contêiner
-COPY ./safe-monitor.jar .
+COPY ./safe-monitor.jar
 
 # Exponha a porta em que a aplicação Java está escutando
 EXPOSE 8080
