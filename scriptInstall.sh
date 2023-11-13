@@ -138,7 +138,7 @@ if [ $? = 0 ]; then
 else
   echo "O Java não foi encontrado. Iniciando o processo de instalação..."
   sudo apt install default-jre
-  sudo apt install openjdk-11-jre-headless
+  sudo apt install openjdk-17-jre-headless
   echo "Java instalado com sucesso!"
   sleep $wait_time
 fi
