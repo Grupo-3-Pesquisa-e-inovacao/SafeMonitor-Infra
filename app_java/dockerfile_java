@@ -1,5 +1,5 @@
 # Use uma imagem oficial do OpenJDK (ou Oracle JDK, dependendo da sua preferência)
-FROM openjdk:11
+FROM openjdk:17
 
 # Crie e defina o diretório de trabalho dentro do contêiner
 WORKDIR /usr/src/app
