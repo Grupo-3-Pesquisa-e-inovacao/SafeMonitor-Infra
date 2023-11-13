@@ -5,7 +5,7 @@ services:
   node-app:
     build:
       context: ./app_node
-      dockerfile: Dockerfile_node
+      dockerfile: dockerfile_node
     ports:
       - "80:80"
 
@@ -13,7 +13,7 @@ services:
   sql-server:
     build:
       context: ./app_sqlserver
-      dockerfile: Dockerfile_sqlserver
+      dockerfile: dockerfile_sqlserver
     ports:
       - "1433:1433"
 
@@ -21,7 +21,7 @@ services:
   mysql-db:
     build:
       context: ./app_mysql
-      dockerfile: Dockerfile_mysql
+      dockerfile: dockerfile_mysql
     ports:
       - "3306:3306"
 
@@ -29,6 +29,6 @@ services:
   java-app:
     build:
       context: ./app_java
-      dockerfile: Dockerfile_java
+      dockerfile: dockerfile_java
     ports:
       - "8080:8080"
