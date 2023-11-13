@@ -9,4 +9,4 @@ ENV MYSQL_DATABASE=safe_monitor
 EXPOSE 3306
 
 # Copiar scripts de inicialização (opcional)
-COPY ./scripts/ /docker-entrypoint-initdb.d/
+COPY ./initBD.sql /docker-entrypoint-initdb.d/
