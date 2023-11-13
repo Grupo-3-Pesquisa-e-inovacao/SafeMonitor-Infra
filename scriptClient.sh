@@ -44,7 +44,7 @@ wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-
 git clone "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Frontend"
 cd ..
 
-cd app_node
+cd app_java
 #Download java
 wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_java/dockerfile_java"
 wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Backend/raw/main/safe-monitor/out/artifacts/safeMonitorClient/safe-monitor.jar"

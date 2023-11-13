@@ -13,7 +13,7 @@ services:
   sql-server:
     build:
       context: ./app_sqlserver
-      dockerfile: dockerfile_sqlserver
+      dockerfile: dockerfile_sqlServer
     ports:
       - "1433:1433"
 
@@ -21,7 +21,7 @@ services:
   mysql-db:
     build:
       context: ./app_mysql
-      dockerfile: dockerfile_mysql
+      dockerfile: dockerfile_sql
     ports:
       - "3306:3306"
 

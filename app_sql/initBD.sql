@@ -1,7 +1,7 @@
-CREATE DATABASE safe_monitor;
+CREATE DATABASE IF NOT EXISTS safe_monitor;
 USE safe_monitor;
 
-CREATE TABLE empresa (
+CREATE TABLE IF NOT EXISTS empresa (
    IdEmpresa INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
    nome_empresa VARCHAR(255) NOT NULL,
    cnpj VARCHAR(45) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE empresa (
    );
 
 
-CREATE TABLE usuario (
+CREATE TABLE IF NOT EXISTS usuario (
    idUsuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
    email  VARCHAR(120) NOT NULL,
    senha VARCHAR(30) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE usuario (
    CONSTRAINT const_fkEmpresa FOREIGN KEY (fk_empresa) REFERENCES empresa (IdEmpresa)
 );
 
-CREATE TABLE sala_de_aula (
+CREATE TABLE IF NOT EXISTS sala_de_aula (
    idSala INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
    nome VARCHAR(45) NOT NULL,
    localizacao TEXT NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE sala_de_aula (
   );
 
 
-CREATE TABLE maquina (
+CREATE TABLE IF NOT EXISTS maquina (
    idMaquina INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
    nome VARCHAR(45),
    modelo VARCHAR(45) NULL,
@@ -69,7 +69,7 @@ CREATE TABLE maquina (
    CONSTRAINT const_maquina_fkEmpresa FOREIGN KEY (fk_empresa)  REFERENCES empresa(idEmpresa)
 );
 
-CREATE TABLE historico_usuarios (
+CREATE TABLE IF NOT EXISTS historico_usuarios (
   idHistoricoUsuario INT NOT NULL AUTO_INCREMENT,
   fk_usuario INT NOT NULL,
   fk_maquina INT NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS janela (
 
 
 
-CREATE TABLE processo (
+CREATE TABLE IF NOT EXISTS processo (
   idProcesso INT NOT NULL AUTO_INCREMENT,
   pid INT NULL,
   nome VARCHAR(80) NULL,
@@ -107,20 +107,20 @@ CREATE TABLE processo (
   CONSTRAINT const_fkMaquina FOREIGN KEY (fk_maquina) REFERENCES maquina (idMaquina));
 
 
-CREATE TABLE  componente (
+CREATE TABLE IF NOT EXISTS  componente (
   idComponente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   nome VARCHAR(45) NULL,
   descricao TEXT NULL
 );
 
-CREATE TABLE  tipo_componente (
+CREATE TABLE IF NOT EXISTS  tipo_componente (
   fk_componente INT NOT NULL,
   fk_maquina INT NOT NULL,
   PRIMARY KEY (fk_componente, fk_maquina),
   CONSTRAINT const_tipoComponente_fkMaquina FOREIGN KEY (fk_maquina) REFERENCES maquina (idMaquina),
   CONSTRAINT const_fkComponente FOREIGN KEY (fk_componente) REFERENCES componente(idComponente));
 
-  CREATE TABLE tipo_dados (
+CREATE TABLE IF NOT EXISTS tipo_dados (
   idTipoDados INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   nome VARCHAR(45) NULL,
   limite_inicial DECIMAL(5,2) NULL,
@@ -128,7 +128,7 @@ CREATE TABLE  tipo_componente (
   );
   
   
-CREATE TABLE captura_dados (
+CREATE TABLE IF NOT EXISTS captura_dados (
   idCaptura INT NOT NULL AUTO_INCREMENT,
   valor_monitorado DECIMAL(7,2) NULL,
   dt_hora DATETIME default current_timestamp,
@@ -141,13 +141,13 @@ CREATE TABLE captura_dados (
   CONSTRAINT const_fk_tipoDdos FOREIGN KEY (fk_tiposDados) REFERENCES tipo_dados (idTipoDados));
   
   
-CREATE TABLE tipo_notificacao(
+CREATE TABLE IF NOT EXISTS tipo_notificacao(
   idTipo_notificacao INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   nome VARCHAR(45) NULL,
   cor VARCHAR(6) NULL
 );
 
-CREATE TABLE notificacao (
+CREATE TABLE IF NOT EXISTS notificacao (
   data_hora DATETIME default current_timestamp,
   fk_tipoNotificacao INT NOT NULL,
   fk_Captura INT NOT NULL,
