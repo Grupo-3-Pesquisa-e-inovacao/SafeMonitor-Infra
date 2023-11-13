@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/mssql/server
 
 # Configurar variáveis de ambiente
-ENV SA_PASSWORD=urubu100
+ENV SA_PASSWORD=Sptech23@
 ENV ACCEPT_EULA=Y
 ENV MSSQL_PID=Express
 
