@@ -28,19 +28,31 @@ echo "Instalando arquivos..."
 
 # Dowload script BD 
 cd app_mysql
-wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_sql/initBD.sql"
-cd..
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sql/dockerfile_sql"
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sql/initBD.sql"
+cd ..
 
 cd  app_sqlserver
-wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/blob/main/app_sqlServer/initialize.sql"
-cd..
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sqlServer/dockerfile_sqlSever"
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_sqlServer/initialize.sql"
+cd ..
 
 
 cd app_node
 #Download web
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_node/dockerfile_node"
 git clone "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Frontend"
 cd ..
 
+cd app_node
+#Download java
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_java/dockerfile_java"
+wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Backend/raw/main/safe-monitor/out/artifacts/safeMonitorClient/safe-monitor.jar"
+cd ..
+
+
+#Dowload docker-copose
+wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/docker-compose.yml"
 
 # Verificando se o docker já está instalado
 echo "Verificando se o docker já está instalado..."
@@ -79,3 +91,7 @@ else
 fi
 
 echo "Pacotes instalados com sucesso!"
+
+
+echo "Iniciando aplicação..."
+sudo docker-compose up -d
