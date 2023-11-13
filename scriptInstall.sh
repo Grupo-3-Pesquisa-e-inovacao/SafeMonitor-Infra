@@ -143,5 +143,7 @@ else
   sleep $wait_time
 fi
 
+
 # Iniciar container
 sudo docker-compose up -d
+

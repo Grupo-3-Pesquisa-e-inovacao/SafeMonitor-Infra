@@ -5,10 +5,10 @@ FROM openjdk:11
 WORKDIR /usr/src/app
 
 # Copie o arquivo JAR da aplicação para o contêiner
-COPY ./SafeMonitor-Backend.jar .
+COPY ./safe-monitor.jar .
 
 # Exponha a porta em que a aplicação Java está escutando
 EXPOSE 8080
 
 # Comando para iniciar a aplicação Java
-CMD ["java", "-jar", "SafeMonitor-Backend.jar"]
+CMD ["java", "-jar", "safe-monitor.jar"]

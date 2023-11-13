@@ -5,5 +5,8 @@ FROM mysql:latest
 ENV MYSQL_ROOT_PASSWORD=urubu100
 ENV MYSQL_DATABASE=safe_monitor
 
+# Expor a porta padrão do SQL Server (1433)
+EXPOSE 3306
+
 # Copiar scripts de inicialização (opcional)
 COPY ./scripts/ /docker-entrypoint-initdb.d/

@@ -1,5 +1,4 @@
 # Use a imagem oficial do Microsoft SQL Server
-# Use a imagem oficial do Microsoft SQL Server
 FROM mcr.microsoft.com/mssql/server
 
 # Configurar variáveis de ambiente
@@ -10,6 +9,9 @@ ENV MSSQL_PID=Express
 # Criar diretório de scripts e copiar script SQL de inicialização
 WORKDIR /var/opt/mssql
 COPY ./initialize.sql .
+
+# Expor a porta padrão do SQL Server (1433)
+EXPOSE 1433
 
 # Inicializar banco de dados
 CMD /bin/bash -c '/opt/mssql/bin/sqlservr & (sleep 10 && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P urubu100 -d master -i initialize.sql)'

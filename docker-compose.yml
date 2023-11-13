@@ -24,3 +24,11 @@ services:
       dockerfile: Dockerfile_mysql
     ports:
       - "3306:3306"
+
+  # Serviço MySQL
+  java-app:
+    build:
+      context: ./app_java
+      dockerfile: Dockerfile_java
+    ports:
+      - "8080:8080"
