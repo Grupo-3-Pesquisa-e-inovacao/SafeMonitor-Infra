@@ -12,5 +12,3 @@ EXPOSE 8080
 
 # Comando para iniciar a aplicação Java
 CMD ["java", "-jar", "safe-monitor.jar"]
-
-READ variavel
