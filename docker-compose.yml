@@ -4,15 +4,19 @@ services:
   # Serviço MySQL
   mysql-db:
     build:
+    container_name: safe_monitor
+    image: mysql:5.7
+    restart: always
+    environment:
+    MYSQL_ROOT_PASSWORD: urubu100
+    MYSQL_DATABASE: safe_monitor
+    volumes:
+    - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+    - "3306:3306"
+
       context: ./app_mysql
       dockerfile: dockerfile_sql
     ports:
       - "3306:3306"
 
-  # Serviço MySQL
-  java-app:
-    build:
-      context: ./app_java
-      dockerfile: dockerfile_java
-    ports:
-      - "8080:8080"
