@@ -32,13 +32,24 @@ cd ..
 
 cd app_java
 #Download java
-wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/app_java/dockerfile_java"
 wget "https://github.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Backend/raw/main/safe-monitor/out/artifacts/safeMonitorClient/safe-monitor.jar"
 cd ..
 
 
 #Dowload docker-copose
 wget "https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Infra/main/docker-compose.yml"
+
+# Verificar se o java já está instalado e instalar
+java -version
+if [ $? = 0 ]; then
+  echo "O java já está instalado!"
+else
+  echo "O Java não foi encontrado. Iniciando o processo de instalação..."
+  sudo apt install default-jre
+  sudo apt install openjdk-17-jre-headless
+  echo "Java instalado com sucesso!"
+  sleep $wait_time
+fi
 
 # Verificando se o docker já está instalado
 echo "Verificando se o docker já está instalado..."
@@ -78,6 +89,7 @@ fi
 
 echo "Pacotes instalados com sucesso!"
 
-
 echo "Iniciando aplicação..."
 sudo docker-compose up -d
+cd app_java
+  java -jar SafeMonitor-Backend.jar
