@@ -29,12 +29,13 @@ sleep $wait_time
 if command -v java &> /dev/null; then
   echo "Java já está instalado."
 else
-  # Instalar Java
+  # Instalar Java 17
   echo "Java não encontrado. Iniciando o processo de instalação..."
   sudo apt-get update
-  sudo apt-get install -y default-jdk
-  echo "Java instalado com sucesso!"
+  sudo apt-get install -y openjdk-17-jdk
+  echo "Java 17 instalado com sucesso!"
 fi
+
 
 # Criando diretórios
 echo "Criando diretórios..."
