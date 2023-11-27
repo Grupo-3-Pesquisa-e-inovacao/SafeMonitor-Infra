@@ -1,37 +1,40 @@
 #!/bin/bash
 
-# Bem-vindo ao Safe Monitor
+
 echo "
 ------------------------------------------------------
    Bem-vindo ao Safe Monitor - Script de Instalação
 ------------------------------------------------------
 
-  ____       _       _____ U _____ u      __  __    U  ___ u  _   _                 _____   U  ___ u   ____     
- / __"| uU  /"\  u  |" ___|\| ___"|/    U|' \/ '|u   \/"_ \/ | \ |"|       ___     |_ " _|   \/"_ \/U |  _"\ u  
-<\___ \/  \/ _ \/  U| |_  u |  _|"      \| |\/| |/   | | | |<|  \| |>     |_"_|      | |     | | | | \| |_) |/  
- u___) |  / ___ \  \|  _|/  | |___       | |  | |.-,_| |_| |U| |\  |u      | |      /| |\.-,_| |_| |  |  _ <    
- |____/>>/_/   \_\  |_|     |_____|      |_|  |_| \_)-\___/  |_| \_|     U/| |\u   u |_|U \_)-\___/   |_| \_\   
-  )(  (__)\\    >>  )(\\,-  <<   >>     <<,-,,-.       \\    ||   \\,-.-,_|___|_,-._// \\_     \\     //   \\_  
- (__)    (__)  (__)(__)(_/ (__) (__)     (./  \.)     (__)   (_")  (_/ \_)-' '-(_/(__) (__)   (__)   (__)  (__) 
-  
-------------------------------------------------------
 "
 
 wait_time=2s
 
-# Check if the script is executed with superuser privileges
+# Aqui o script só permite a execução caso o usuário execute com "Sudo"
 if [ "$EUID" -ne 0 ]; then
   echo "Este script precisa ser executado com privilégios de superusuário. Execute com 'sudo'."
   exit 1
 fi
 
-# Interagir com o usuário
+# Aguarda o usuário pressionar enter para continuar
 read -p "Pressione Enter para continuar..."
 
-# Updating the system
+# Atualiza os pacotes da máquina do usuário
 echo "Atualizando os pacotes..."
 sudo apt update && sudo apt upgrade -y
 sleep $wait_time
+
+
+# Verificar se o Java já está instalado
+if command -v java &> /dev/null; then
+  echo "Java já está instalado."
+else
+  # Instalar Java
+  echo "Java não encontrado. Iniciando o processo de instalação..."
+  sudo apt-get update
+  sudo apt-get install -y default-jdk
+  echo "Java instalado com sucesso!"
+fi
 
 # Criando diretórios
 echo "Criando diretórios..."
@@ -92,11 +95,21 @@ fi
 
 echo "Pacotes instalados com sucesso!"
 
+
 # Iniciando aplicação
 read -p "Deseja iniciar a aplicação agora? (s/n): " answer
 if [ "$answer" == "s" ]; then
   sudo docker-compose up -d
   echo "Aplicação iniciada com sucesso!"
+
+  # Perguntar se o usuário quer iniciar o JAR
+  read -p "Deseja iniciar também o JAR da aplicação Java agora? (s/n): " jar_answer
+  if [ "$jar_answer" == "s" ]; then
+    java -jar ./app_java/safe-monitor.jar
+  else
+    echo "Você pode iniciar o JAR mais tarde executando 'java -jar ./app_java/safe-monitor.jar' no diretório SafeMonitor."
+  fi
+
 else
   echo "Você pode iniciar a aplicação mais tarde executando 'sudo docker-compose up -d' no diretório SafeMonitor."
 fi
