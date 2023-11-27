@@ -3,17 +3,16 @@ services:
 
   # Serviço MySQL
   mysql:
-    build:
+    image: mysql:latest
     container_name: safe_monitor
     restart: always
     environment:
-    MYSQL_ROOT_PASSWORD: urubu100
-    MYSQL_DATABASE: safe_monitor
+      MYSQL_ROOT_PASSWORD: urubu100
+      MYSQL_DATABASE: safe_monitor
     volumes:
-    - ./app_mysql /docker-entrypoint-initdb.d/
+      - ./app_mysql:/docker-entrypoint-initdb.d/
     ports:
-    - "3306:3306"
+      - "3306:3306"
 
-    volumes:
-      mysql_data:
-
+volumes:
+  mysql_data:
