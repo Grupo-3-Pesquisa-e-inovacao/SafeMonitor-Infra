@@ -56,7 +56,7 @@ cd ..
 
 cd app_java
 # Download Java
-wget " wget https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Backend/main/safe-monitor/out/artifacts/safe_monitor_jar/safe-monitor.jar" || { echo "Erro ao baixar o arquivo JAR do Java. Saindo..."; exit 1; }
+wget " https://raw.githubusercontent.com/Grupo-3-Pesquisa-e-inovacao/SafeMonitor-Backend/main/safe-monitor/out/artifacts/safe_monitor_jar/safe-monitor.jar" || { echo "Erro ao baixar o arquivo JAR do Java. Saindo..."; exit 1; }
 cd ..
 
 # Download docker-compose
