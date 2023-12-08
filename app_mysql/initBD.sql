@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS safe_monitor;
+create DATABASE safe_monitor;
 USE safe_monitor;
 
 CREATE TABLE IF NOT EXISTS empresa (
@@ -189,6 +189,15 @@ CREATE TABLE IF NOT EXISTS alerta (
     ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_notificacao_maquina1 FOREIGN KEY (fk_maquina) REFERENCES maquina (idMaquina)  
 	ON DELETE CASCADE ON UPDATE CASCADE);
+    
+-- INSERT TIPO COMPONENTE
+INSERT INTO tipo_componente (nome) VALUES ("Processador"), ("Ram"), ("Disco");
+INSERT INTO tipo_alerta (nome, cor) VALUES ('Aviso', 'FF0000'), ('Urgente', 'ffd700');
+INSERT INTO limites (fk_TipoAlerta, fk_tipoComponente) VALUES (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2,3);
+INSERT INTO empresa (nome_empresa, cnpj, razao_social, telefone_celular, tipo_instituicao, privada) 
+VALUES ('SPTECH', '11.111.111/1111-09', 'São Paulo Tech School', '(11) 11111-1111', 'faculdade', 's');
+INSERT INTO usuario (email, senha, nome, cargo, cadastrar, leitura, alterar, deletar, capturar, fk_empresa)
+	VALUES  ('admin@gmail.com', '12345', 'Alessandro', 'Presidente', 1, 1, 1, 1, 1, 1);
 
 -- PROCEDURE EXIBIR SALAS DE AULA
 DELIMITER $$
@@ -268,17 +277,18 @@ BEGIN
 END $$
 
 
--- INSERT TIPO COMPONENTE
-INSERT INTO tipo_componente (nome) VALUES ("Processador"), ("Ram"), ("Disco");
-INSERT INTO tipo_alerta (nome, cor) VALUES ('Aviso', 'FF0000'), ('Urgente', 'ffd700');
-INSERT INTO limites (fk_TipoAlerta, fk_tipoComponente) VALUES (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2,3);
+
+
+-- INSERIR DADOS EMPRESA
 INSERT INTO empresa (nome_empresa, cnpj, razao_social, telefone_celular, tipo_instituicao, privada) 
 VALUES ('SPTECH', '11.111.111/1111-09', 'São Paulo Tech School', '(11) 11111-1111', 'faculdade', 's');
+
+-- INSERIR DADOS USUÁRIO
 INSERT INTO usuario (email, senha, nome, cargo, cadastrar, leitura, alterar, deletar, capturar, fk_empresa)
-	VALUES  ('admin@gmail.com', '12345', 'Alessandro', 'Presidente', 1, 1, 1, 1, 1, 1);
+	VALUES  ('admin@gmail.com', '12345', 'Alessandro', 'Presidente', 1, 1, 1, 1, 1, 1),
+		    ('admin@sptech.school', '12345', 'Marcio', 'Administrador de TI', 1, 1, 1, 1, 1, 1),
+			('melissa@sptech.school', '12345', 'Melissa', NULL, 0, 0, 0, 0, 1, 1);
 
-
-
-
-
-
+INSERT INTO sala_de_aula (nome, localizacao, fk_usuario, fk_empresa) 
+	VALUES ('Sala 1', '1° andar', 2, 1),
+	       ('Sala 5', '6° andar, lado B', 3, 1);
